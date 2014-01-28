@@ -24,9 +24,11 @@
 		<bootstrap.version>3.0.3</bootstrap.version>
 		<jquery.version>2.1.0</jquery.version>
 		<jquery-ui.version>1.10.3</jquery-ui.version>
+		<querydsl.version>3.3.0</querydsl.version>
 	</properties>	
 	
 	<dependencies>
+		<!-- Spring Data - JPA MongoDB Neo4j QueryDSL -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -46,7 +48,40 @@
             <groupId>org.springframework.data</groupId>
       		<artifactId>spring-data-neo4j</artifactId>
         	<version>${spring-data-neo4j.version}</version>
-        </dependency>        
+        </dependency>
+		<!-- John : Add QueryDSL for JPA MongoDB -->
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.0-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-mongodb</artifactId>
+			<version>${querydsl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongo-java-driver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>              
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -100,6 +135,30 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- John : add apt-maven-plugin -->
+            <!-- https://github.com/mysema/apt-maven-plugin -->
+            <plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processors>
+								<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+								<!-- <processor>com.mysema.query.mongodb.morphia.MorphiaAnnotationProcessor</processor> -->
+								<processor>org.springframework.data.mongodb.repository.support.MongoAnnotationProcessor</processor>
+							</processors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>			
 		</plugins>
 	</build>
 
