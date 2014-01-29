@@ -1,0 +1,22 @@
+server:
+    port: 9090
+    tomcat:
+        access_log_enabled: true
+        basedir: target/tomcat
+spring:
+    application:
+        name: spring-boot-petclinic-thymeleaf-mongodb
+    datasource:
+        driverClassName: org.hsqldb.jdbcDriver
+        url: jdbc:hsqldb:mem:petclinic
+        username: sa
+        password:
+        schema: initDB.sql,populateDB.sql
+    jpa:
+        database: HSQL
+        show-sql: true
+    thymeleaf:
+        cache: false
+security:
+    user:
+        password: admin	

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  		layout:decorator="fragments/layout"	>
+  
+  <body>	
+  		<p layout:fragment="page-title">
+  			<h2 th:utext="${visit.new} ? 'New Visit:' : 'Visit:'">Visit</h2>
+  		</p>
+        <div layout:fragment="page-content"> 
+        	<b>Pet:</b>
+            <table class="table table-striped">
+	                <thead>
+	                    <tr>
+	                    	<th>Name</th>
+	                      	<th>Birth Date</th>
+		                    <th>Type</th>
+		                    <th>Owner</th>
+	                    </tr>
+	                </thead>
+                   	<tbody>
+   	                	<tr>
+	   	                	<td th:text="${visit.pet.name}">name</td>
+	   	                  	<td th:text="${#dates.format(visit.pet.birthDate.toGregorianCalendar().getTime(),'yyyy-MM-dd')}">20000101</td>
+	   	                  	<td th:text="${visit.pet.type.name}">type</td>
+	   	                  	<td th:text="${visit.pet.owner.firstName + ' ' + visit.pet.owner.lastName}">owner</td>
+   	                	</tr>
+                   </tbody>
+             </table>    		
+			<form action="#" th:object="${visit}" th:action="@{#}" method="post">
+				<div layout:include="tags/inputField::inputDiv" th:remove="tag" 
+					th:with="label='Date', fieldName='date'" >
+					<input layout:fragment="input" th:remove="tag">
+						<input type="text" th:field="*{date}" size="10" maxlength="10" placeholder="yyyy-mm-dd"/>
+					</input>				   
+				</div> 
+				<div layout:include="tags/inputField::inputDiv" th:remove="tag" 
+					th:with="label='Description', fieldName='description'" >
+					<input layout:fragment="input" th:remove="tag">
+						<textarea th:field="*{description}" rows="10" cols="25"/>
+					</input>				   
+				</div> 
+				<div class="form-actions">
+					<input type="hidden" name="petId" th:value="${visit.pet.id}" />
+					<button type="submit" class="btn" data-loading-text="Adding Visit...">Add Visit</button>
+				</div>				
+            </form>
+        
+            <br />
+            <b>Previous Visits:</b>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                </tr>
+                <tr th:if="${!visit.new}" th:each="visit : ${visit.pet.visits}">
+                    <td th:text="${#dates.format(visit.date.toGregorianCalendar().getTime(),'yyyy-MM-dd')}"></td>
+                    <td th:text="${visit.description}">description</td>
+                </tr> 
+            </table>            
+        </div>
+  </body>      
+</html>            
+            

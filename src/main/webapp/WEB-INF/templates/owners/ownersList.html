@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  		
+		xmlns:dt="http://github.com/dandelion/datatables" 
+  		layout:decorator="fragments/layout"	>
+  
+  <body>	
+  		<p layout:fragment="page-title">
+  			<h2>Owners:</h2>
+  		</p>
+        <div layout:fragment="page-content">     		
+			<table id="ownerTable" class="table table-stripped">
+                <thead>
+                    <tr>
+					    <th >Name</th>
+					    <th >Address</th>
+					    <th >City</th>
+					    <th >Telephone</th>
+					    <th >Pets</th>
+				    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="owner : ${selections}">
+                        <td>
+                            <a th:href="@{'/owners/' + ${owner.id}}" href="show.html" 
+                               th:text="${owner.firstName + ' ' + owner.lastName}"
+                               data-placement="left" 
+							   data-toggle="tooltip" 
+							   th:attr="data-original-title=${owner.firstName + ' ' + owner.lastName}" >Mary Smith</a>
+                        </td>
+                        <td th:text="${owner.address}">45, Oxford Street</td>
+                        <td th:text="${owner.city}">Cambridge</td>
+                        <td th:text="${owner.telephone}">555-555-555</td>
+                        <td>
+                            <span th:each="pet : ${owner.pets}" th:utext="${pet.name + '&nbsp;'}">
+                                Bob
+                            </span>
+                        </td>
+                    </tr>
+                    <tr th:remove="all">
+                        <td><a href="show.html">John Moore</a></td>
+                        <td>78, NY Street</td>
+                        <td>Washington</td>
+                        <td>333-333-333</td>
+                        <td>
+                            <span>Roger</span>
+                            &nbsp;
+                            <span>Peggy</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+  </body>      
+</html>
+            
+           
