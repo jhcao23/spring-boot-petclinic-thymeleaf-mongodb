@@ -25,6 +25,9 @@
 		<jquery.version>2.1.0</jquery.version>
 		<jquery-ui.version>1.10.3</jquery-ui.version>
 		<querydsl.version>3.3.0</querydsl.version>
+		<!-- Dates -->
+        <jodatime-hibernate.version>1.3</jodatime-hibernate.version>        
+        <jadira-usertype-core.version>3.1.0.CR8</jadira-usertype-core.version>
 	</properties>	
 	
 	<dependencies>
@@ -81,7 +84,29 @@
 					<artifactId>mongo-java-driver</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>              
+		</dependency>    
+        <!-- Date -->
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>${jadira-usertype-core.version}</version>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>hibernate-entitymanager</artifactId>
+            		<groupId>org.hibernate</groupId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time-hibernate</artifactId>
+            <version>${jodatime-hibernate.version}</version>
+        </dependency>	
+        <!-- Database -->	          
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
