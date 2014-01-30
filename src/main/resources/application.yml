@@ -6,17 +6,19 @@ server:
 spring:
     application:
         name: spring-boot-petclinic-thymeleaf-mongodb
+    thymeleaf:
+        cache: false
     datasource:
         driverClassName: org.hsqldb.jdbcDriver
         url: jdbc:hsqldb:mem:petclinic
         username: sa
         password:
-        schema: initDB.sql,populateDB.sql
+        schema: initDB.sql, populateDB.sql
     jpa:
         database: HSQL
         show-sql: true
-    thymeleaf:
-        cache: false
+        hibernate:
+            ddl-auto: create-drop            
 security:
     user:
         password: admin	

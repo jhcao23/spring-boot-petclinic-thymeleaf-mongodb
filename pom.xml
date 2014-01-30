@@ -48,12 +48,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
+		
 		<!-- Spring Data - JPA MongoDB Neo4j QueryDSL -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+        <!-- Hibernate Validator -->
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-validator</artifactId>
+        </dependency>		
 		<dependency>
 	      	<groupId>org.springframework.data</groupId>
 	      	<artifactId>spring-data-mongodb-cross-store</artifactId>
@@ -69,13 +74,7 @@
             <groupId>org.springframework.data</groupId>
       		<artifactId>spring-data-neo4j</artifactId>
         	<version>${spring-data-neo4j.version}</version>
-        </dependency>
-        <!-- Hibernate Validator -->
-        <dependency>
-        	<groupId>org.hibernate</groupId>
-        	<artifactId>hibernate-validator</artifactId>
-        </dependency>
-        
+        </dependency>        
 		<!-- John : Add QueryDSL for JPA MongoDB -->
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
@@ -137,10 +136,10 @@
             <scope>runtime</scope>
 		</dependency>       
 		<!-- MySQL -->
-		<dependency>
-	        <groupId>mysql</groupId>
-	        <artifactId>mysql-connector-java</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 	        <groupId>mysql</groupId> -->
+<!-- 	        <artifactId>mysql-connector-java</artifactId> -->
+<!-- 		</dependency> -->
 		
 		<!-- Spring MVC & WebSocket --> 	
 		<dependency>
