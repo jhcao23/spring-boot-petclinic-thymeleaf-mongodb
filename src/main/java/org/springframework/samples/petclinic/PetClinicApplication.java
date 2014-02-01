@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.config;
+package org.springframework.samples.petclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
