@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller used to showcase what happens when an exception is thrown
@@ -38,7 +39,17 @@ public class CrashController {
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String error() {
-    	return "uncaughtException";
+    	return "exception";
     }
     
+    @RequestMapping("/")
+    public String welcome() {
+    	return "welcome";
+    }
+    
+    @RequestMapping("/hi")
+    @ResponseBody
+    public String hi(){
+    	return "hi";
+    }
 }
