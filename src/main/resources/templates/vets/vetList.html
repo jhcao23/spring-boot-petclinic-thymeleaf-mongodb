@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  		xmlns:dt="http://github.com/dandelion/datatables" 
+  		layout:decorator="fragments/layout"	>
+  
+  <body>	
+  		<p layout:fragment="page-title">
+  			<h2>Veterinarians</h2>
+  		</p>
+        <div layout:fragment="page-content">     		
+			<table id="vetsTable" class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Specialties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vet : ${vets.vetList}">
+                        <td th:text="${vet.firstName + ' ' + vet.lastName}">vet name</td>
+                        <td>
+                    	    <span th:remove="tag" th:each="specialty : ${vet.specialties}" th:text="${specialty.name}">
+                                specialty name
+                            </span>
+                            <span th:remove="tag" th:if="${vet.nrOfSpecialties == 0}">none</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+<!--             <table class="table-buttons"> -->
+<!--                 <tr> -->
+<!--                     <td> -->
+<!--                         <a th:href="@{'/vets.xml'}" class="btn btn-info">View as XML</a> -->
+<!--                     </td> -->
+<!--                     <td> -->
+<!--                     	<a th:href="@{'/vets.atom'}" class="btn btn-success">Subscribe to Atom feed</a> -->
+<!--                     </td> -->
+<!--                 </tr> -->
+<!--             </table>             -->
+        </div>
+  </body>      
+</html>
