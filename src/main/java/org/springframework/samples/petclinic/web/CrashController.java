@@ -39,6 +39,11 @@ public class CrashController {
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String error() {
+    	return "error";
+    }
+    
+    @RequestMapping(value = "/exception", method = RequestMethod.GET)
+    public String exception() {
     	return "exception";
     }
     
