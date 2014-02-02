@@ -16,8 +16,6 @@ spring:
     jpa:
         database: HSQL
         show-sql: true
-        hibernate:
-            ddl-auto: create-drop            
 security:
     user:
         password: admin	

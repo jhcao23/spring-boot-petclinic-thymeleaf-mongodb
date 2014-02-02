@@ -3,19 +3,7 @@
 		xmlns:th="http://www.thymeleaf.org"
   		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   		layout:decorator="fragments/layout">
-	<head >
-      	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-      	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>PetClinic :: a Spring Framework demonstration</title>		  
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/petclinic.css}"/>		
-		<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-		<script th:src="@{/js/petclinic.js}"></script>	    	     
-    </head>  
+
   <body>	  		
   		<p layout:fragment="page-title">
   			<h2 th:text="#{welcome}">Welcome</h2>
