@@ -9,43 +9,50 @@
   			<h2 th:utext="${visit.new} ? 'New Visit:' : 'Visit:'">Visit</h2>
   		</p>
         <div layout:fragment="page-content"> 
-        	<b>Pet:</b>
-            <table class="table table-striped">
-	                <thead>
-	                    <tr>
-	                    	<th>Name</th>
-	                      	<th>Birth Date</th>
-		                    <th>Type</th>
-		                    <th>Owner</th>
-	                    </tr>
-	                </thead>
-                   	<tbody>
-   	                	<tr>
-	   	                	<td th:text="${visit.pet.name}">name</td>
-	   	                  	<td th:text="${#dates.format(visit.pet.birthDate.toGregorianCalendar().getTime(),'yyyy-MM-dd')}">20000101</td>
-	   	                  	<td th:text="${visit.pet.type.name}">type</td>
-	   	                  	<td th:text="${visit.pet.owner.firstName + ' ' + visit.pet.owner.lastName}">owner</td>
-   	                	</tr>
-                   </tbody>
-             </table>    		
-			<form action="#" th:object="${visit}" th:action="@{#}" method="post">
-				<div layout:include="tags/inputField::inputDiv" th:remove="tag" 
-					th:with="label='Date', fieldName='date'" >
-					<input layout:fragment="input" th:remove="tag">
-						<input type="text" th:field="*{date}" size="10" maxlength="10" placeholder="yyyy-mm-dd"/>
-					</input>				   
-				</div> 
-				<div layout:include="tags/inputField::inputDiv" th:remove="tag" 
-					th:with="label='Description', fieldName='description'" >
-					<input layout:fragment="input" th:remove="tag">
-						<textarea th:field="*{description}" rows="10" cols="25"/>
-					</input>				   
-				</div> 
-				<div class="form-actions">
-					<input type="hidden" name="petId" th:value="${visit.pet.id}" />
-					<button type="submit" class="btn" data-loading-text="Adding Visit...">Add Visit</button>
-				</div>				
-            </form>
+			<script>
+			    $(function () {
+			    	$("#date").datepicker({ dateFormat: 'yy/mm/dd'});
+			    });
+			</script>
+		    <b>Pet</b>
+		    <table class="table table-striped">
+		        <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Birth Date</th>
+		            <th>Type</th>
+		            <th>Owner</th>
+		        </tr>
+		        </thead>
+		        <tr>
+		            <td th:text="${visit.pet.name}">[name]</td>
+		            <td th:text="${{visit.pet.birthDate}}">[birthdate]</td>
+		            <td th:text="${visit.pet.type.name}">[type]</td>
+		            <td th:text="|${visit.pet.owner.firstName} ${visit.pet.owner.lastName}|">[firstName lastName]</td>
+		        </tr>
+		    </table> 
+		    <form th:object="${visit}" action="../owners/ownerDetails.html" th:action="@{${#httpServletRequest.servletPath}}" method="post">
+		        <div class="control-group">
+		            <label class="control-label">Date </label>
+		
+		            <div class="controls">
+		                <input type="text" th:field="*{date}" id="date"/>
+		                <span class="help-inline" th:errors="*{date}">[date error]</span>
+		            </div>
+		        </div>
+		        <div class="control-group">
+		            <label class="control-label">Description </label>
+		
+		            <div class="controls">
+		                <input type="text" th:field="*{description}"/>
+		                <span class="help-inline" th:errors="*{description}">[description error]</span>
+		            </div>
+		        </div>
+		        <div class="form-actions">
+		            <input type="hidden" name="petId" th:value="${visit.pet.id}"/>
+		            <button type="submit">Add Visit</button>
+		        </div>
+		    </form>
         
             <br />
             <b>Previous Visits:</b>

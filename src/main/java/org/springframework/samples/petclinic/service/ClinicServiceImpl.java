@@ -26,10 +26,13 @@ import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
+import org.springframework.samples.petclinic.repository.PetTypeRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.google.common.collect.Lists;
 
 /**
  * Mostly used as a facade for all Petclinic controllers
@@ -40,13 +43,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClinicServiceImpl implements ClinicService {
 	
 	private PetRepository petRepository;
+	private PetTypeRepository petTypeRepository;
 	private VetRepository vetRepository;
 	private OwnerRepository ownerRepository;	
 	private VisitRepository visitRepository;
 
 	@Autowired
-	public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
+	public ClinicServiceImpl(PetRepository petRepository, PetTypeRepository petTypeRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
 		this.petRepository = petRepository;
+		this.petTypeRepository = petTypeRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
 		this.visitRepository = visitRepository;
@@ -54,12 +59,12 @@ public class ClinicServiceImpl implements ClinicService {
 
 	@Transactional(readOnly=true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
-		return petRepository.findPetTypes();
+		return Lists.newArrayList(petTypeRepository.findAll());
 	}
 
 	@Transactional(readOnly=true)
 	public Owner findOwnerById(int id) throws DataAccessException {
-		return ownerRepository.findById(id);
+		return ownerRepository.findOne(id);
 	}
 	
 	@Transactional(readOnly=true)
@@ -69,7 +74,9 @@ public class ClinicServiceImpl implements ClinicService {
 
 	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
-		ownerRepository.save(owner);		
+		System.out.println("saving owner...");
+		ownerRepository.save(owner);
+		System.out.println("saved owner...");
 	}
 		
 	@Transactional
@@ -79,7 +86,7 @@ public class ClinicServiceImpl implements ClinicService {
 	
 	@Transactional(readOnly=true)
 	public Pet findPetById(int id) throws DataAccessException {
-		return petRepository.findById(id);
+		return petRepository.findOne(id);
 	}
 
 	@Transactional
@@ -89,17 +96,7 @@ public class ClinicServiceImpl implements ClinicService {
 
 	@Transactional(readOnly=true)
 	public Collection<Vet> findVets() throws DataAccessException {
-		return vetRepository.findAll();
+		return Lists.newArrayList(vetRepository.findAll());		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

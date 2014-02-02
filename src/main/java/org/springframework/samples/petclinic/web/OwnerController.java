@@ -21,6 +21,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +42,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Michael Isvy
  */
 @Controller
-@SessionAttributes(types = Owner.class)
+@SessionAttributes("owner")
 public class OwnerController {
 
     private final ClinicService clinicService;
+    
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     @Autowired
     public OwnerController(ClinicService clinicService) {
@@ -119,7 +123,7 @@ public class OwnerController {
             return "owners/createOrUpdateOwnerForm";
         } else {
             this.clinicService.saveOwner(owner);
-            status.setComplete();
+        	status.setComplete();
             return "redirect:/owners/{ownerId}";
         }
     }

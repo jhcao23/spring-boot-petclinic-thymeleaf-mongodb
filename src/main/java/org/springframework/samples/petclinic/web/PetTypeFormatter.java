@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.web;
 
 import java.text.ParseException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,6 @@ import org.springframework.stereotype.Component;
 public class PetTypeFormatter implements Formatter<PetType> {
 
     private final ClinicService clinicService;
-
 
     @Autowired
     public PetTypeFormatter(ClinicService clinicService) {
