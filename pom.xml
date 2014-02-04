@@ -34,7 +34,7 @@
 	</properties>	
 	
 	<dependencies>	
-		<!-- use yaml -->
+		<!-- use yaml for application.yml -->
 		<dependency>
 	        <groupId>org.yaml</groupId>
 	        <artifactId>snakeyaml</artifactId>
@@ -51,18 +51,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 	      	<groupId>org.springframework.data</groupId> -->
-<!-- 	      	<artifactId>spring-data-mongodb-cross-store</artifactId> -->
-<!-- 	      	<exclusions> -->
-<!-- 	      		<exclusion> -->
-<!-- 	      			<groupId>org.hibernate.javax.persistence</groupId> -->
-<!-- 	      			<artifactId>hibernate-jpa-2.0-api</artifactId> -->
-<!-- 	      		</exclusion> -->
-<!-- 	      	</exclusions> -->
-<!-- 	      	<version>${spring-data-mongo.version}</version> -->
-<!-- 	    </dependency>         -->
 
         <!-- Hibernate Validator -->
         <dependency>
@@ -155,7 +143,8 @@
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>		
-		</dependency>		<dependency>
+		</dependency>		
+		<dependency>
             <groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
