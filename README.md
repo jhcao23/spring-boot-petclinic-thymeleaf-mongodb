@@ -11,4 +11,7 @@ https://github.com/thymeleaf/thymeleafexamples-petclinic [https://github.com/thy
 on top of their hybrid, I am trying to use mongodb as logging DB; also, I hire QueryDSL for JPA & MongoDB to generate type-safe Queries.
 Neo4j might be used to handle further relationship of owners based on their SNS connections, but not used for current moment.
 
+I use jdk8 for compatibility with new Spring 4 and new jdk8 Time. so please make sure
+your JAVA_HOME points to jdk8.
+
 
