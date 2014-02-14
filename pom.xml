@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.0.BUILD-SNAPSHOT</version>
+		<version>1.0.0.RC3</version>
 	</parent>	
 
 	<artifactId>spring-boot-petclinic-thymeleaf-mongodb</artifactId>
@@ -17,12 +17,13 @@
 		<start-class>org.springframework.samples.petclinic.PetClinicApplication</start-class>
         <java.version>1.8</java.version>
 		<!-- Data -->
-<!-- 		<hibernate-entitymanager.version>4.3.1.FINAL</hibernate-entitymanager.version> -->
-		<spring-data-neo4j.version>2.3.3.RELEASE</spring-data-neo4j.version>
-		<querydsl.version>3.3.0</querydsl.version>
+<!-- 		<hibernate.version>4.3.1.FINAL</hibernate.version> -->
+		<hibernate-validator.version>5.0.3.Final</hibernate-validator.version>
+		<spring-data-neo4j.version>3.0.0.RC1</spring-data-neo4j.version>
+		<querydsl.version>3.3.1</querydsl.version>
 		
 		<!-- UI -->
-		<bootstrap.version>3.0.3</bootstrap.version>
+		<bootstrap.version>3.1.1</bootstrap.version>
 		<jquery.version>2.1.0</jquery.version>
 		<jquery-ui.version>1.10.3</jquery-ui.version>
 		
@@ -31,7 +32,10 @@
         <jadira-usertype-core.version>3.1.0.CR8</jadira-usertype-core.version>
         
         <!-- EhCache -->
-        <ehcache.version>2.6.6</ehcache.version>       
+        <ehcache.version>2.6.6</ehcache.version>  
+        
+        <!-- Server -->
+<!--         <tomcat.version>8.0.3</tomcat.version> -->
 	</properties>	
 	
 	<dependencies>	
@@ -236,6 +240,20 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>neo4j-public-release-repository</id>
+			<url>http://m2.neo4j.org/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+<!--         <repository> -->
+<!--             <id>neo4j-contrib-releases</id> -->
+<!--             <url>https://raw.github.com/neo4j-contrib/m2/master/releases</url> -->
+<!--             <snapshots> -->
+<!--                 <enabled>false</enabled> -->
+<!--             </snapshots> -->
+<!--         </repository> -->
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
