@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.repository;
+package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.model.jpa.Vet;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant with Spring Data naming

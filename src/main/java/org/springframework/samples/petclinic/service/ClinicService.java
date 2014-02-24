@@ -19,11 +19,11 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.model.Vet;
-import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.model.jpa.Owner;
+import org.springframework.samples.petclinic.model.jpa.Pet;
+import org.springframework.samples.petclinic.model.jpa.PetType;
+import org.springframework.samples.petclinic.model.jpa.Vet;
+import org.springframework.samples.petclinic.model.jpa.Visit;
 
 
 /**
