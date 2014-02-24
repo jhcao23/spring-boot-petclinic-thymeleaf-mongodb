@@ -14,6 +14,10 @@ spring:
     jpa:
         database: HSQL
         show-sql: true
+    data:
+        mongodb:
+            host: localhost
+            database: petclinic
     thymeleaf:
         cache: false        
 security:
